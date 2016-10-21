@@ -4,6 +4,13 @@ block content
     div(class='add-user-page')
         div(class='container')
             h2= title
+                if(success)
+                    h2= 'Successful validation !'
+                else
+                    if(errors)
+                        ul(class='message error-message')
+                            each error in errors
+                                li= error.msg
                 form#formAddUser(name='addUser', method='post',action='/users/addUser')
                     table
                         tbody

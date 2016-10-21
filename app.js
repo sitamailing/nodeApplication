@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var validator = require('express-validator');
+var expressSession = require('express-session');
+
 
 // Mysql database connection
 //var connectionDB = require('./config/database');
@@ -33,8 +36,12 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// add validator after the body parser because it required body parser.
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession({secret:'max', saveUninitialized: false, resave: false}));
+
 
 var busboy = require('connect-busboy'); //middleware for form/file upload
 

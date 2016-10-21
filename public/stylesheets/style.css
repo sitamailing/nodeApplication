@@ -155,8 +155,20 @@ a{
   background-color: #D23641;
   color: #fff;
   border: 1px solid #d32132;
-  color: #fff;
   padding: 8px 35px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.error-message{
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+}
+
+.message{
+  font-size: 14px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
 }

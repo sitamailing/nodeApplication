@@ -12,13 +12,27 @@ router.get('/', function (req, res, next) {
 
 /* GET New User page. */
 router.get('/add', function (req, res) {
-    res.render('users/add', {title: 'Add New User'});
+    res.render('users/add', {title: 'Add New User', success: req.session.success, errors: req.session.errors});
+    req.session.errors = null;
+    req.session.success = null;
 });
 
 /* POST to Add User */
 router.post('/addUser', function (req, res) {
     // Set our internal DB variable
     var connection = req.connectionDB;
+    req.check('name','Name is required.').notEmpty();
+    req.check('email', 'Invalid email address.').notEmpty().withMessage('Email is required.').isEmail();
+    req.check('address','Address is required.').notEmpty();
+    var errors = req.validationErrors();
+    if (errors) {
+        req.session.errors = errors;
+        req.session.success = false;
+        res.redirect('/users/add');
+    }else{
+        req.session.success = true;
+    }
+
     var post = {
         name: req.body.name,
         email: req.body.email,
