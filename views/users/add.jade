@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    div(class='add-user-page')
+        div(class='container')
+            h2= title
+                form#formAddUser(name='addUser', method='post',action='/users/addUser')
+                    table
+                        tbody
+                            tr
+                                td Name
+                                td
+                                    input(type='text', placeholder='Enter name', name='name')
+                            tr
+                                td Email
+                                td
+                                    input(type='text', placeholder='Enter email', name='email')
+                            tr
+                                td Address
+                                td
+                                    input(type='text', placeholder='Enter address', name='address')
+                            tr
+                                td=''
+                                td
+                                    input(type='submit', class='submit-button', value='Submit')
+                                    input(type='button', class='cancel', value='Cancel')

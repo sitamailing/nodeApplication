@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+    div(class='upload-user-page')
+        div(class='container')
+            h2= title
+            form#formAddUser(name="adduser",method="post",action="/users/uploadUser",enctype='multipart/form-data')
+                                    input#inputUserName(type="file", placeholder="Upload file", name="uploadFile", accept="text/cvs")
+                                    button#btnSubmit(type="submit") Submit

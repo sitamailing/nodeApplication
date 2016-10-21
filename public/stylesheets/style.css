@@ -1,0 +1,162 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h2{
+  color: #000;
+  font-size: 42px;
+}
+
+h3{
+  font-size: 30px;
+}
+
+p{
+  color: #fff;
+  font-size: 16px;
+}
+
+span{
+  color: #fff;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.container {
+  font-family: 'Helvetica';
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.container{
+  width: 1170px;
+  margin:0 auto;
+}
+
+.header{
+  background-color: #000;
+  height: 130px;
+}
+
+.logo{
+  float: left;
+}
+
+.nav{
+  float: right;
+}
+
+.nav ul li{
+  display: inline;
+  padding: 5px;
+}
+
+.nav ul li:hover{
+  font-weight: bold;
+}
+
+.container > div{
+  margin-top: 30px;
+}
+
+.user-header h2{
+  color: #000;
+  float: left;
+}
+
+.user-header a{
+  float: right;
+}
+
+.user-page table{
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.user-page thead{
+  font-weight: bold;
+}
+
+.user-page th{
+  background-color: gray;
+}
+
+.user-page th,.user-page td{
+  line-height: 50px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.add-user{
+  padding: 10px 20px;
+  background: #FF9900;
+  border: 1px solid #fff;
+  color: #FEFFFD;
+  font-weight: bold;
+}
+
+.a-inside{
+  padding: 4px 10px;
+  border: 1px solid #fff;
+  text-decoration: none;
+}
+
+.a-inside.edit{
+  background-color: #00CC00;
+  color: #fff;
+}
+
+.a-inside.delete{
+  background-color: #D23641;
+  color: #fff;
+}
+
+.add-user-page .container h2,
+.add-user-page .container form,
+.upload-user-page .container h2,
+.upload-user-page .container form{
+  margin-top: 30px;
+}
+
+.add-user-page table, .upload-user-page table{
+  width: 25%;
+}
+
+.add-user-page th,.add-user-page td, .upload-user-page th, .upload-user-page td{
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+}
+
+#formAddUser table td{
+  font-weight: bold;
+}
+
+#formAddUser input[type="text"] {
+  height: 25px;
+  width: 200px;
+}
+
+.submit-button{
+  border: 1px solid #6599FF;
+  color: #fff;
+  padding: 8px 35px;
+  font-weight: bold;
+  background: #6599FF;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: #D23641;
+  color: #fff;
+  border: 1px solid #d32132;
+  color: #fff;
+  padding: 8px 35px;
+  font-weight: bold;
+  cursor: pointer;
+}

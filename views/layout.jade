@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= 'Node Application'
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .main-wrapper
+        .header
+            .container
+                .nav-header
+                    .logo
+                        h2
+                            a(href='/')
+                    .nav
+                        ul
+                            li
+                                a(href='/')="Home"
+                            li
+                                a(href='/')="About"
+                            li
+                                a(href='/')="Contact"
+        block content
