@@ -1,19 +1,31 @@
-// Mysql database
-var mysql = require('mysql');
-// Established a mysql database connection
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'password123',
-    database : 'node_application'
-});
-// Check database connection
-connection.connect(function(err){
-    if(!err) {
-        console.log("Database is connected.");
-    } else {
-        console.log("Failed to connect database.");
-    }
-});
+var path = require('path');
+var rootPath = path.normalize(__dirname + '/..');
+var env = process.env.NODE_ENV || 'development';
 
-module.exports = connection;
+var config = {
+    development: {
+        root: rootPath,
+        app: {
+            name: 'Node Application'
+        },
+        port: 3000,
+        db: {
+            database: "node_application",
+            user: "root",
+            password: "password123",
+            options: {
+                host: 'localhost',
+                dialect: 'mysql',
+
+                pool: {
+                    max: 100,
+                    min: 0,
+                    idle: 10000
+                }
+            }
+        }
+    }
+};
+
+module.exports = config[env];
+

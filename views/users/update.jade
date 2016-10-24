@@ -8,5 +8,5 @@ block content
                 ul
                     each error in errors
                         li(class='message error-message')= error.msg
-            form#formAddUser(name='addUser', method='post',action='/users/add')
+            form#formAddUser(name='addUser', method='post',action='/users/update/' + user.iduser)
                 include partial/user-form

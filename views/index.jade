@@ -11,18 +11,27 @@ block content
                 Users
               a(href='/users/add', class='add-user') Add
               a(href='/users/upload', class='add-user') Upload CSV
-            div
-              table
-                thead
-                    tr
-                        th Name
-                        th Email
-                        th Action
-                tbody
-                  each user, i in users
-                    tr(class=(i % 2 == 0) ? 'odd' : 'even')
-                      td=user.name
-                      td=user.email
-                      td
-                        a(href='/users/update/' + user.iduser, class='a-inside edit') Edit
-                        a(href='/users/delete/' + user.iduser , class='a-inside delete') Delete
+            if (success_msg.length > 0)
+                div(class='message success-message')
+                    span=success_msg
+                    a(href='#', class='close')&times
+            div(class='user-list')
+                if(users.length)
+                    table
+                        thead
+                            tr
+                                th Name
+                                th Email
+                                th Action
+                        tbody
+                            each user, i in users
+                                tr(class=(i % 2 == 0) ? 'odd' : 'even')
+                                td=user.name
+                                td=user.email
+                                td
+                                    a(href='/users/update/' + user.iduser, class='a-inside edit') Edit
+                                    a(href='/users/delete/' + user.iduser , class='a-inside delete') Delete
+                else
+                    div
+                        span.
+                            No Users ...

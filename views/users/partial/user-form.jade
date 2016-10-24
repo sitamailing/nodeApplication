@@ -1,0 +1,19 @@
+table
+    tbody
+        tr
+            td Name
+            td
+                input(type='text', placeholder='Enter name', name='name', value=user ? user.name : '')
+        tr
+            td Email
+            td
+                input(type='text', placeholder='Enter email', name='email', value=user ? user.email : '')
+        tr
+            td Address
+            td
+                input(type='text', placeholder='Enter address', name='address', value=user ? user.address : '')
+        tr
+            td=''
+            td
+                input(type='submit', class='submit-button', value=buttonName ? buttonName : 'Submit')
+                input(type='button', class='cancel', value='Cancel')

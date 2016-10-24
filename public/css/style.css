@@ -16,10 +16,6 @@ p{
   font-size: 16px;
 }
 
-span{
-  color: #fff;
-}
-
 a{
   text-decoration: none;
   color: #fff;
@@ -39,6 +35,13 @@ a{
 .header{
   background-color: #000;
   height: 130px;
+  position: relative;
+}
+
+.header .container{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .logo{
@@ -51,15 +54,20 @@ a{
 
 .nav ul li{
   display: inline;
-  padding: 5px;
+  padding: 20px;
 }
 
 .nav ul li:hover{
   font-weight: bold;
 }
 
-.container > div{
+.user-page > div{
   margin-top: 30px;
+}
+
+.user-header{
+  height: 60px;
+  padding: 15px;
 }
 
 .user-header h2{
@@ -69,6 +77,12 @@ a{
 
 .user-header a{
   float: right;
+}
+
+.user-list span{
+  color: #000;
+  font-size: 16px;
+  padding: 15px;
 }
 
 .user-page table{
@@ -149,6 +163,7 @@ a{
   background: #6599FF;
   margin-right: 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .cancel {
@@ -158,6 +173,14 @@ a{
   padding: 8px 35px;
   font-weight: bold;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.message{
+  font-size: 14px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
 }
 
 .error-message{
@@ -166,9 +189,25 @@ a{
   border: 1px solid #ebccd1;
 }
 
-.message{
+.success-message{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.close{
+  float: right;
+  font-size: 16px;
+  color: #000;
+  opacity: 0.2;
+}
+
+.footer{
+  margin-top: 10px;
+}
+
+.footer .container p{
+  padding:15px;
+  color: gray;
   font-size: 14px;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 4px;
 }
