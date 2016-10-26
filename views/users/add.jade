@@ -7,6 +7,6 @@ block content
             if(errors)
                 ul
                     each error in errors
-                        li(class='message error-message')= error.msg
+                        li(class='message error-message')= error.message
             form#formAddUser(name='addUser', method='post',action='/users/add')
                 include partial/user-form

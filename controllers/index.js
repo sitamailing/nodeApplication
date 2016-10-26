@@ -1,4 +1,5 @@
 var express = require('express');
+// get an instance of the express Router
 var router = express.Router();
 
 var userRepo = require('../repository/usersRepository');

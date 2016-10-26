@@ -1,8 +1,10 @@
 var express = require('express');
+// get an instance of the express Router
 var router = express.Router();
 var fs = require('fs-extra');
 var csv = require('csv-parser');
 var userRepo = require('../repository/usersRepository');
+var Joi = require('joi');
 
 // GET New User page
 router.get('/add', function (req, res) {
@@ -11,12 +13,34 @@ router.get('/add', function (req, res) {
 
 // POST to Add User
 router.post('/add', function (req, res) {
-    // Validation
-    req.check('name', 'Name is required.').notEmpty();
-    req.check('email', 'Invalid email address.').notEmpty().withMessage('Email is required.').isEmail();
-    req.check('address', 'Address is required.').notEmpty();
 
-    var errors = req.validationErrors();
+    var post = {
+        name: req.body.name,
+        email: req.body.email,
+        address: req.body.address
+    };
+
+    // Validation
+    var schema = Joi.object().keys({
+        name: Joi.string().required().label('Name').options({
+            language: {
+                any: {
+                    empty: '{{key}} is not allowed to be empty'
+                }
+            }
+        }),
+        email: Joi.string().email().required().label('Email'),
+        address: Joi.required().label('Address')
+    });
+    var errors;
+    Joi.validate(post, schema, {
+        abortEarly: false
+    }, function log(err, value) {
+        value = JSON.stringify(value);
+        if (err) {
+            errors = err.details;
+        }
+    });
 
     if (errors) {
         res.render('users/add', {
@@ -24,11 +48,6 @@ router.post('/add', function (req, res) {
         });
     }
 
-    var post = {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address
-    };
     // Save User
     userRepo.save(post)
         .then(function () {
@@ -110,12 +129,33 @@ router.get('/update/:id', function (req, res) {
 
 // Update a User
 router.post('/update/:id', function (req, res) {
-    // Validation
-    req.check('name', 'Name is required.').notEmpty();
-    req.check('email', 'Invalid email address.').notEmpty().withMessage('Email is required.').isEmail();
-    req.check('address', 'Address is required.').notEmpty();
+    var post = {
+        name: req.body.name,
+        email: req.body.email,
+        address: req.body.address
+    };
 
-    var errors = req.validationErrors();
+    // Validation
+    var schema = Joi.object().keys({
+        name: Joi.string().required().label('Name').options({
+            language: {
+                any: {
+                    empty: '{{key}} is not allowed to be empty'
+                }
+            }
+        }),
+        email: Joi.string().email().required().label('Email'),
+        address: Joi.required().label('Address')
+    });
+    var errors;
+    Joi.validate(post, schema, {
+        abortEarly: false
+    }, function log(err, value) {
+        value = JSON.stringify(value);
+        if (err) {
+            errors = err.details;
+        }
+    });
 
     if (errors) {
         res.render('users/update', {
@@ -123,11 +163,6 @@ router.post('/update/:id', function (req, res) {
         });
     }
 
-    var post = {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address
-    };
     // Update a User
     userRepo.update(post, {iduser: req.params.id})
         .then(function () {

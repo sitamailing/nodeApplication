@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 var flash = require('connect-flash');
 var mysql = require('mysql');
@@ -16,17 +15,6 @@ db.sequelize.sync()
     .catch(function (e) {
         throw new Error(e);
     });
-
-// Mysql database connection
-//var connectionDB = require('./config/database');
-
-// Established a mysql database connection
-//var connectionDB = mysql.createConnection({
-//    host: 'localhost',
-//    user: 'root',
-//    password: 'password123',
-//    database: 'node_application'
-//});
 
 var routes = require('./controllers/index');
 var users = require('./controllers/users');
@@ -47,31 +35,14 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // BodyParser Middleware
+// configure app to use bodyParser()
+// this will let us get the data from a POST
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // Set Static Folder (For Stylesheets, JavaScripts, Images)
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Express Validator
-// Note : Add after the body parser because it required body parser.
-app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        var namespace = param.split('.')
-            , root = namespace.shift()
-            , formParam = root;
-
-        while (namespace.length) {
-            formParam += '[' + namespace.shift() + ']';
-        }
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        };
-    }
-}));
 
 // Express Session
 app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false}));
@@ -92,12 +63,6 @@ app.use(logger('dev'));
 
 // Connect Busboy for form/file upload
 app.use(busboy());
-
-// Make  db accessible to our router
-//app.use(function (req, res, next) {
-//    req.connectionDB = connectionDB;
-//    next();
-//});
 
 app.use('/', routes);
 app.use('/users', users);
